@@ -4,12 +4,18 @@ import mediapipe as mp
 from ultralytics import YOLO
 import os
 import math
+import datetime
 
 # Load input and output video paths
 input_video = r"C:\Users\Rojina.Shaikh\Downloads\video.mp4"
-output_video = "yolo.mp4"
+timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+output_video = f"yolo_{timestamp}.mp4"
 USE_MEDIAPIPE = True
 USE_YOLO = True
+
+# Print for debug
+print(f"Input: {input_video}")
+print(f"Output: {output_video}")
 
 # Initialize MediaPipe Pose
 mp_pose = mp.solutions.pose
@@ -31,11 +37,6 @@ frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
 
-# Delete old output file if it exists
-if os.path.exists(output_video):
-    os.remove(output_video)
-
-# Set up output video writer
 out = cv2.VideoWriter(
     output_video,
     cv2.VideoWriter_fourcc(*'mp4v'),
