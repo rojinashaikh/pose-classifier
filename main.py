@@ -6,7 +6,7 @@ import os
 import math
 
 # Load input and output video paths
-input_video = "C:\Users\Rojina.Shaikh\Downloads\MicrosoftTeams-video.mp4"
+input_video = r"C:\Users\Rojina.Shaikh\Downloads\MicrosoftTeams-video.mp4"
 output_video = "yolo.mp4"
 USE_MEDIAPIPE = True
 USE_YOLO = True
