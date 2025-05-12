@@ -6,6 +6,11 @@ import os
 import math
 import datetime
 
+# Delete old output videos
+for f in os.listdir():
+    if f.startswith("yolo_") and f.endswith(".mp4"):
+        os.remove(f)
+
 # Load input and output video paths
 input_video = r"C:\Users\Rojina.Shaikh\Downloads\video.mp4"
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -13,7 +18,7 @@ output_video = f"yolo_{timestamp}.mp4"
 USE_MEDIAPIPE = True
 USE_YOLO = True
 
-# Print for debug
+# Debug print
 print(f"Input: {input_video}")
 print(f"Output: {output_video}")
 
@@ -45,7 +50,7 @@ out = cv2.VideoWriter(
 )
 
 frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-print(f"\U0001F4FA Processing {frame_count} frames from {input_video}...")
+print(f" Processing {frame_count} frames from {input_video}...")
 
 def calculate_angle(a, b, c):
     a = [a.x, a.y]
@@ -130,4 +135,4 @@ cap.release()
 out.release()
 if pose:
     pose.close()
-print(f"\u2705 Saved processed video to: {output_video}")
+print(f" Saved processed video to: {output_video}")
